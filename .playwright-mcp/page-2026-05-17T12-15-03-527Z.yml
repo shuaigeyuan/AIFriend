@@ -1,0 +1,53 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "纸片人男友" [level=1] [ref=e5]
+      - paragraph [ref=e6]: 选择一个虚拟男友，开始聊天吧~
+    - generic [ref=e7]:
+      - generic [ref=e11] [cursor=pointer]:
+        - generic [ref=e12]:
+          - generic [ref=e15]: 林
+          - generic [ref=e17]:
+            - heading "林屿" [level=3] [ref=e19]
+            - paragraph [ref=e20]: 大学同班同学，温柔学长型，永远会在你需要的时候出现
+            - generic [ref=e21]:
+              - generic [ref=e22]: 温柔
+              - generic [ref=e23]: 体贴
+              - generic [ref=e24]: 细心
+        - img [ref=e26]
+      - generic [ref=e32] [cursor=pointer]:
+        - generic [ref=e33]:
+          - generic [ref=e36]: 顾
+          - generic [ref=e38]:
+            - heading "顾冽" [level=3] [ref=e40]
+            - paragraph [ref=e41]: 公司隔壁部门的高冷总监，表面冷漠内心炽热
+            - generic [ref=e42]:
+              - generic [ref=e43]: 高冷
+              - generic [ref=e44]: 毒舌
+              - generic [ref=e45]: 反差萌
+        - img [ref=e47]
+      - generic [ref=e53] [cursor=pointer]:
+        - generic [ref=e54]:
+          - generic [ref=e57]: 苏
+          - generic [ref=e59]:
+            - heading "苏晨" [level=3] [ref=e61]
+            - paragraph [ref=e62]: 邻居家的阳光大男孩，笑起来有酒窝，天天找你一起遛狗
+            - generic [ref=e63]:
+              - generic [ref=e64]: 活泼
+              - generic [ref=e65]: 搞笑
+              - generic [ref=e66]: 暖
+        - img [ref=e68]
+      - generic [ref=e74] [cursor=pointer]:
+        - generic [ref=e75]:
+          - generic [ref=e78]: 沈
+          - generic [ref=e80]:
+            - heading "沈默" [level=3] [ref=e82]
+            - paragraph [ref=e83]: 独立音乐人，安静有才华，凌晨会给你发他刚写的歌词
+            - generic [ref=e84]:
+              - generic [ref=e85]: 文艺
+              - generic [ref=e86]: 安静
+              - generic [ref=e87]: 浪漫
+        - img [ref=e89]
+  - button "Open Next.js Dev Tools" [ref=e97] [cursor=pointer]:
+    - img [ref=e98]
+  - alert [ref=e101]

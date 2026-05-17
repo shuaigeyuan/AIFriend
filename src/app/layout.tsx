@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { Inspector } from 'react-dev-inspector';
 import './globals.css';
+import { DevInspector } from './dev-inspector';
 
 export const metadata: Metadata = {
   title: {
@@ -66,7 +66,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`antialiased`}>
-        {isDev && <Inspector />}
+        {isDev && <DevInspector />}
         {children}
       </body>
     </html>
