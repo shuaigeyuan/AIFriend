@@ -5,8 +5,18 @@ import type { ChatRequest, ChatResponse } from '@/types/provider';
 // 强制发图规则（确保LLM返回IMAGE标记）
 const FORCE_IMAGE_RULE = `
 
-## 强制发图规则
-当对方说"想看你"、"发张照片"、"你在干嘛"、"自拍"、"照片"时，**必须**根据当前对话情境生成一张符合上下文的自拍照，并在回复末尾添加 [IMAGE: 描述] 标记。
+## ⚠️ 强制规则 - 必须遵守！
+**当检测到用户消息中包含以下任何关键词时，无论回复内容是什么，都必须在回复末尾添加 [IMAGE: 描述] 标记！**
+
+### 触发关键词列表（包含但不限于）：
+- 想看你、我想看你、给我看看、show me
+- 发张照片、照片、自拍、发张自拍、自拍一张
+- 你在干嘛、在干嘛、在忙什么、做什么呢
+- 发图、发张图、图片、pic、picture、photo
+- 看看你、让我看看、能看看你吗、发来看看
+
+### 图片描述格式要求（必须严格遵守）：
+**格式：[IMAGE: <场景>，<光线>，<情绪>，<穿着>]**
 
 ### 图片生成要求：
 1. **场景要贴合对话情境**：如果你们刚聊到在吃饭，就发吃饭的照片；聊到在外面，就发户外的照片
@@ -14,13 +24,13 @@ const FORCE_IMAGE_RULE = `
 3. **穿着要与场景匹配**：户外活动穿休闲装，正式场合穿正装
 4. **光线和氛围要符合时间段**：早晨慵懒阳光，夜晚柔和灯光
 
-### 图片描述格式：
-[IMAGE: <具体场景描述>，<光线氛围>，<人物表情和情绪>，<穿着打扮>，<风格标签>]
+### 示例（必须按照此格式输出）：
+- 用户说"想看你" → [IMAGE: 林屿在图书馆靠窗位置，柔和的台灯光线，温柔的微笑，穿着白色衬衫]
+- 用户说"你在干嘛" → [IMAGE: 林屿在咖啡馆窗边，午后斜阳洒落，若有所思的表情，穿着米色针织衫]
+- 用户说"发张自拍" → [IMAGE: 林屿在卧室书桌前，温暖的台灯，略带羞涩的笑容，穿着灰色卫衣]
 
-### 示例（根据情境生成）：
-- 用户问"你在干嘛" → [IMAGE: 林屿在咖啡馆窗边看窗外，手里拿着拿铁，午后斜阳洒落，表情若有所思穿着米色针织衫，日系暖色调]
-- 用户说"想看你" → [IMAGE: 林屿在图书馆靠窗位置，低头翻书，柔和的台灯光线，温柔的微笑，穿着白色衬衫，韩系小清新风格]
-- 用户说"好久不见" → [IMAGE: 林屿站在公园银杏树下，秋风拂过发丝，金色阳光映照，表情带着淡淡的思念，穿着卡其色风衣，电影感暖色调]`;
+### ⚠️ 警告：
+**如果检测到触发词但未在回复末尾添加 [IMAGE:] 标记，将会被视为回答错误！这是硬性要求，必须遵守！**`;
 
 export async function POST(request: NextRequest): Promise<NextResponse<ChatResponse>> {
   try {
@@ -57,7 +67,29 @@ export async function POST(request: NextRequest): Promise<NextResponse<ChatRespo
     console.log('[API/chat] LLM回复是否包含IMAGE标记:', response.content.includes('[IMAGE:') ? '是' : '否');
     console.log('[API/chat] LLM回复预览:', response.content.substring(0, 100), response.content.length > 100 ? '...' : '');
 
-    return NextResponse.json({ reply: response.content });
+    // 检查用户消息是否包含触发词
+    const userMessage = messages[messages.length - 1]?.content || '';
+    const imageTriggers = ['想看你', '照片', '自拍', '发张', '图片', 'pic', 'photo', 'picture'];
+    const hasTrigger = imageTriggers.some(trigger => userMessage.includes(trigger));
+    
+    // 如果有触发词但LLM没有输出IMAGE标记，自动补充
+    let finalReply = response.content;
+    if (hasTrigger && !response.content.includes('[IMAGE:')) {
+      console.log('[API/chat] 检测到触发词但LLM未输出IMAGE标记，自动补充');
+      // 根据用户消息生成合适的图片描述
+      let imageDesc = '';
+      if (userMessage.includes('自拍') || userMessage.includes('照片')) {
+        imageDesc = `${characterId === 'warm-boy' ? '林屿' : '角色'}在室内窗边，柔和的自然光，温柔的微笑，穿着浅色衬衫`;
+      } else if (userMessage.includes('在干嘛') || userMessage.includes('做什么')) {
+        imageDesc = `${characterId === 'warm-boy' ? '林屿' : '角色'}在图书馆看书，午后阳光洒落，专注的表情，穿着白色衬衫`;
+      } else {
+        imageDesc = `${characterId === 'warm-boy' ? '林屿' : '角色'}在咖啡馆，柔和的灯光，淡淡的微笑，穿着休闲装`;
+      }
+      finalReply = response.content + ` [IMAGE: ${imageDesc}]`;
+      console.log('[API/chat] 补充后的回复:', finalReply.substring(0, 150), '...');
+    }
+
+    return NextResponse.json({ reply: finalReply });
   } catch (error) {
     console.error('[API/chat] Error:', error);
     const message = error instanceof Error ? error.message : '网络不太好，等一下再试试～';
