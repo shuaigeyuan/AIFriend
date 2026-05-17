@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  turbopack: {},
   webpack: (config) => {
     config.externals = [...(config.externals || []), 'pg', 'pg-native', 'pg-query-stream'];
     return config;
