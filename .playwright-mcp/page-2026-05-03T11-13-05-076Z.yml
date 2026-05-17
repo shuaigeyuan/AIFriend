@@ -1,0 +1,48 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading "纸片人男友" [level=1] [ref=e5]
+      - paragraph [ref=e6]: 选择一个虚拟男友，开始聊天吧~
+    - generic [ref=e7]:
+      - button "林 林屿 大学同班同学，温柔学长型，永远会在你需要的时候出现 温柔 体贴 细心" [ref=e8]:
+        - generic [ref=e9]:
+          - generic [ref=e11]: 林
+          - generic [ref=e12]:
+            - heading "林屿" [level=2] [ref=e13]
+            - paragraph [ref=e14]: 大学同班同学，温柔学长型，永远会在你需要的时候出现
+            - generic [ref=e15]:
+              - generic [ref=e16]: 温柔
+              - generic [ref=e17]: 体贴
+              - generic [ref=e18]: 细心
+      - button "顾 顾冽 公司隔壁部门的高冷总监，表面冷漠内心炽热 高冷 毒舌 反差萌" [ref=e19]:
+        - generic [ref=e20]:
+          - generic [ref=e22]: 顾
+          - generic [ref=e23]:
+            - heading "顾冽" [level=2] [ref=e24]
+            - paragraph [ref=e25]: 公司隔壁部门的高冷总监，表面冷漠内心炽热
+            - generic [ref=e26]:
+              - generic [ref=e27]: 高冷
+              - generic [ref=e28]: 毒舌
+              - generic [ref=e29]: 反差萌
+      - button "苏 苏晨 邻居家的阳光大男孩，笑起来有酒窝，天天找你一起遛狗 活泼 搞笑 暖" [ref=e30]:
+        - generic [ref=e31]:
+          - generic [ref=e33]: 苏
+          - generic [ref=e34]:
+            - heading "苏晨" [level=2] [ref=e35]
+            - paragraph [ref=e36]: 邻居家的阳光大男孩，笑起来有酒窝，天天找你一起遛狗
+            - generic [ref=e37]:
+              - generic [ref=e38]: 活泼
+              - generic [ref=e39]: 搞笑
+              - generic [ref=e40]: 暖
+      - button "沈 沈默 独立音乐人，安静有才华，凌晨会给你发他刚写的歌词 文艺 安静 浪漫" [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e44]: 沈
+          - generic [ref=e45]:
+            - heading "沈默" [level=2] [ref=e46]
+            - paragraph [ref=e47]: 独立音乐人，安静有才华，凌晨会给你发他刚写的歌词
+            - generic [ref=e48]:
+              - generic [ref=e49]: 文艺
+              - generic [ref=e50]: 安静
+              - generic [ref=e51]: 浪漫
+  - button "Open Next.js Dev Tools" [ref=e57] [cursor=pointer]:
+    - img [ref=e58]

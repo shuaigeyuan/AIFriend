@@ -1,0 +1,23 @@
+- generic [active] [ref=e1]:
+  - button "Open Next.js Dev Tools" [ref=e58] [cursor=pointer]:
+    - img [ref=e59]
+  - alert [ref=e52]
+  - generic [ref=e62]:
+    - generic [ref=e63]:
+      - button [ref=e64]:
+        - img [ref=e65]
+      - generic [ref=e68]: 林
+      - generic [ref=e69]:
+        - heading "林屿" [level=2] [ref=e70]
+        - paragraph [ref=e71]: 在线
+    - generic [ref=e73]:
+      - generic [ref=e74]:
+        - paragraph [ref=e77]: 你死哪里了
+        - generic [ref=e79]: 我
+      - generic [ref=e80]:
+        - generic [ref=e82]: 林
+        - generic [ref=e88]: 林屿正在输入...
+    - generic [ref=e90]:
+      - textbox "给林屿发消息..." [disabled] [ref=e91]
+      - button [disabled] [ref=e92]:
+        - img [ref=e93]
