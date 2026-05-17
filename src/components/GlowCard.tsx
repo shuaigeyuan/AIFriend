@@ -63,9 +63,9 @@ const GlowCard: React.FC<GlowCardProps> = ({
   };
 
   const getInlineStyles = () => {
-    const baseStyles: React.CSSProperties = {
-      '--base': base,
-      '--spread': spread,
+    const baseStyles: React.CSSProperties & Record<string, string> = {
+      '--base': String(base),
+      '--spread': String(spread),
       '--radius': '14',
       '--border': '3',
       '--backdrop': 'hsl(0 0% 60% / 0.12)',

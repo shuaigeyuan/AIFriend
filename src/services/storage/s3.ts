@@ -31,7 +31,7 @@ function createS3Client(config: S3StorageConfig): S3Client {
     clientConfig.forcePathStyle = config.forcePathStyle ?? true;
   }
 
-  return new S3Client(clientConfig as Parameters<typeof S3Client>[0]);
+  return new S3Client(clientConfig as any);
 }
 
 function guessContentType(key: string): string {
@@ -109,7 +109,7 @@ export function createS3StorageProvider(config: S3StorageConfig): StorageProvide
         Key: key,
       });
 
-      return getSignedUrl(client, command, { expiresIn });
+      return getSignedUrl(client as any, command as any, { expiresIn });
     },
 
     getPublicUrl(key: string): string {
