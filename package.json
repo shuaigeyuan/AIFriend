@@ -3,12 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "bash ./scripts/build.sh",
-    "dev": "bash ./scripts/dev.sh",
+    "build": "pnpm next build",
+    "build:bash": "bash ./scripts/build.sh",
+    "build:win": "cmd /c ./scripts/build.bat",
+    "dev": "pnpm next dev",
     "preinstall": "npx only-allow pnpm",
     "lint": "eslint",
     "lint:build": "eslint . --quiet",
-    "start": "bash ./scripts/start.sh",
+    "start": "pnpm next start",
     "ts-check": "tsc -p tsconfig.json",
     "validate": "pnpm run --parallel '/^(ts-check|lint:build)$/'"
   },

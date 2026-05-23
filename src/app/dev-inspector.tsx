@@ -7,9 +7,12 @@ export function DevInspector() {
   const [Inspector, setInspector] = useState<ComponentType | null>(null);
 
   useEffect(() => {
-    import('react-dev-inspector')
-      .then((mod) => setInspector(() => mod.Inspector))
-      .catch(() => {});
+    // 只在开发环境中加载 react-dev-inspector
+    if (process.env.NODE_ENV === 'development') {
+      import('react-dev-inspector')
+        .then((mod) => setInspector(() => mod.Inspector))
+        .catch(() => {});
+    }
   }, []);
 
   if (!Inspector) return null;
